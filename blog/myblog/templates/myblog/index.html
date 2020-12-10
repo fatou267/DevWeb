@@ -1,0 +1,43 @@
+{% extends 'myblog/base.html' %}
+
+{% block content %}
+{% if not posts %}
+<p>Vous n'avez encore crée d'articles</p>
+
+{% else %}
+{% for post in posts %}
+<div class="container">
+   <div class="row">
+
+      <div class="col-md-3">
+          
+      </div>
+      <div class="col-md-6">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                   <img src="{{ post.image.url }}" width="70%" height="70%">
+                </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h2 class="card-title">{{ post.titre }}</h2>
+                <p class="card-text  mt-4">{{ post.texte|linebreaksbr }}</p>
+                <p><a href="{% url 'detail' pk=post.pk %}">Plus</a></p>
+               <p class="card-text"><small class="text-muted">Date de publication: {{ post.date_publication }}</small></p>
+            </div>
+        </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+          
+      </div>
+
+   </div> 
+</div>
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}

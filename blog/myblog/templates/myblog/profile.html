@@ -1,0 +1,31 @@
+{% extends 'myblog/base.html' %}
+{% block content %}
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+    <div class="col-md-4">
+    <div class="rounder" style="width: 18rem; display:inline-block;">
+	<img src="{{  user.profile.image.url }}" class="img" width="50%" height="50%">
+	</div>
+	</div>
+	<div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Nom d'utilisateur: {{ user.username }}</h5>
+        <p class="text-secondary card-text">Nom:{{ user.first_name }} </p>
+		<p class="text-secondary card-text">Prénom:{{ user.last_name }}</p>
+		<p class="text-secondary card-text">Email: {{ user.email }} </p>
+		</div>
+	</div>
+</div>
+</div>
+<br><br><br>
+	<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="form-group mt-2">
+			{{ u_form.as_p }}
+			{{ p_form.as_p }}
+			</div>
+			<button type="submit" class="btn btn-primary">Mettre à jour</button>
+			<a href="{% url 'articles' %}" class="btn btn-info">Mes articles</a>
+	</form>
+	
+{% endblock %}

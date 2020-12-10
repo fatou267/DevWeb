@@ -1,0 +1,17 @@
+{% extends 'myblog/base.html' %}
+
+{% block content %}
+<div class="row ">
+	<div class="col-md-6 col-auto">
+		<form method="POST">
+			{% csrf_token %}
+			<div class="alert alert-danger" role="alert">
+			êtes vous sûr de vouloir supprimer {{ post.titre }}	
+			</div>
+			<button type="submit" class="btn btn-danger">Oui
+			</button>
+			<a href="{% url 'edit_pub' pk=post.pk %}" class="btn btn-info">NON</a>
+		</form>
+	</div>
+</div>
+{% endblock %}

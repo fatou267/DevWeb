@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>my blog</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/myblog.css' %}">
+</head>
+<body>
+	<div class="card text-center ">
+  <div class="card-header page-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="{% url 'home' %}"><i class="material-icons" style="font-size:36px;color:blue">home</i></a>
+      </li>
+      {% if request.user.is_authenticated %}
+      <li class="nav-item">
+       <a href="{% url 'logout' %}"  class="nav-link liste"><button type="button" class="btn btn-primary">Se deconnecter</button></a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'profile' %}" class="nav-link liste"><button type="button" class="btn btn-primary">Profile</button></a>
+      </li>
+      {% else %}
+      <li class="nav-item ">
+      <a href="{% url 'login' %}" class="nav-link liste"><button type="button" class="btn btn-primary">Se connecter</button></a></li>
+      <li class="nav-item">
+	<a href="{% url 'register' %}" class="nav-link liste"><button type="button" class="btn btn-primary">S'inscrire</button></a></li>
+	{% endif %}
+    </ul>
+    <div class="nav nav-pills card-header-pills">
+    <a href="{% url 'new_pub' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></div>
+  </div>
+</div>
+
+<div class="content container">
+ <div class="row">
+   <div class="col-md-8">
+{% block content %}
+{% endblock %}
+</div>
+</div>
+</div>
+ <div class="card-footer text-muted mt-4 text-center">
+    &copy;Copyright 2020 Niangbalo|designer
+  </div>
+</body>
+</html>
